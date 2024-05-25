@@ -8,7 +8,6 @@ require('colors');
 const opentype = require('opentype.js');
 const { isValidDartPackageName, getTextStyleContent, removeSymbols, buildLayerFirst, buildFeaturesFirst } = require('./helper.js');
 
-
 const args = minimist(process.argv.slice(2), {
     alias: {
         f: 'fonts',
@@ -24,8 +23,6 @@ const fontsFolderPath = args.fonts;
 const textStyles = args["with-text-styles"];
 const textTheme = args["text-theme"];
 const layerFirst = args['layer-first'] ?? false;
-
-
 
 // If no project name provided
 if (!projectName) {
@@ -57,8 +54,6 @@ if ((textStyles || textTheme) && !fontsFolderPath) {
     process.exit(1);
 }
 
-
-
 const projectPath = path.join(process.cwd(), projectName);
 
 // Create flutter project and ignore output
@@ -80,12 +75,7 @@ void main() {
 // write main.dart
 fs.writeFileSync(path.join(projectPath, 'lib', 'main.dart'), mainDartContent);
 
-
 console.log(`[+]: changed main.dart`.cyan);
-
-
-
-
 
 let pathStart;
 
@@ -99,8 +89,6 @@ if (layerFirst) {
 
     pathStart = path.join(projectPath, 'lib', "features", "home", "presentation");
 }
-
-
 
 console.log(`[+]: added feature-first layer`.cyan);
 
@@ -162,15 +150,10 @@ console.log(`[+]: changed widget_test.dart`.cyan);
 const pubspecPath = path.join(projectPath, 'pubspec.yaml');
 let pubspecContent = fs.readFileSync(pubspecPath, 'utf8');
 
-
-
 const fontList = [];
-
 
 // detecting fonts
 if (fontsFolderPath) {
-
-
 
     const fontsDir = path.join(projectPath, 'assets', 'fonts');
     fs.ensureDirSync(fontsDir);
@@ -193,6 +176,7 @@ if (fontsFolderPath) {
         );
 
         let fontInfoList = [];
+
         if (fontFiles.length > 0) {
             pubspecContent += `    - family: ${fontFamily}\n      fonts:\n`;
             fontFiles.forEach(file => {
@@ -226,21 +210,13 @@ if (fontsFolderPath) {
                         console.log(`[+]: including Font: ${file} - ${weights} - italic`.yellow);
                         pubspecContent += `          style: italic\n`;
                         fontInfo.italic = true;
-
                     } else {
                         console.log(`[+]: including Font: ${file} - ${weights}`.yellow);
-
                     }
-
-
                 } else {
                     console.log(`[+]: including Font: ${file}`.yellow);
                 }
-
-
                 fontInfoList.push(fontInfo);
-
-
             });
         } else {
             console.warn("[-]: Fonts ignored, no .ttf or .otf files were found".yellow);
@@ -269,13 +245,6 @@ if (textStyles) {
 
     let stylesDartContent = `import 'package:flutter/material.dart';\n\n`;
 
-
-
-
-
-
-
-
     for (const fontFamilyList of fontList) {
         const fontFamily = fontFamilyList.fontFamily;
 
@@ -296,12 +265,9 @@ if (textStyles) {
 
     }
 
-
-
     fs.mkdirSync(path.join(projectPath, 'lib', "styling"));
     fs.writeFileSync(path.join(projectPath, 'lib', 'styling', 'styles.dart'), stylesDartContent);
 }
-
 
 const textThemeList = [
     'displayLarge: TextStyle(fontSize: 57.0, fontWeight: FontWeight.w900)',  // Black
@@ -321,8 +287,6 @@ const textThemeList = [
     'labelSmall: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w300)',
 ]
 
-
-
 let textThemeContent = '';
 
 // write text themes
@@ -334,9 +298,6 @@ if (textTheme) {
     console.log(`[+]: included TextTheme in app.dart`.cyan);
 
 }
-
-
-
 
 // custom app.dart
 const appDartContent = `
