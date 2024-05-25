@@ -1,17 +1,35 @@
 {
-    "name": "flutter-fusion",
-    "version": "1.0.0",
-    "description": "Create a boilerplate flutter project",
-    "main": "index.js",
-    "bin": {
-      "create-flutter-app": "index.js"
-    },
-    "dependencies": {
-      "fs-extra": "^10.0.0",
-      "minimist": "^1.2.7",
-      "colors": "^1.4.0",
-      "opentype.js": "^1.3.4"
-    },
-    "author": "Sobhi Hammoud",
-    "license": "MIT"
-  }
+  "name": "flutter-fusion",
+  "version": "1.0.0",
+  "description": "Create a boilerplate flutter project",
+  "main": "index.js",
+  "bin": {
+    "flutter-fusion": "index.js"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "minimist": "^1.2.7",
+    "colors": "^1.4.0",
+    "opentype.js": "^1.3.4"
+  },
+  "author": "Sobhi Hammoud",
+  "license": "MIT",
+  "devDependencies": {},
+  "scripts": {
+    "test": "flutter-fusion test_app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gastrolize/flutter-fusion.git"
+  },
+  "keywords": [
+    "flutter",
+    "boilerplate",
+    "starter",
+    "project"
+  ],
+  "bugs": {
+    "url": "https://github.com/Gastrolize/flutter-fusion/issues"
+  },
+  "homepage": "https://github.com/Gastrolize/flutter-fusion#readme"
+}
